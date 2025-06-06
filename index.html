@@ -3,501 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Games Hub - Play Free Online Games</title>
-    <!-- 添加字体图标库 -->
-    <link rel="stylesheet" href="fontawesome/all.min.css">
+    <title>MonsterOnline - Play Exciting Monster Games Online | BigMonkey.online</title>
+    <meta name="description" content="Play MonsterOnline, an exciting multiplayer monster game where you can battle, collect, and evolve your monsters in a vibrant online world.">
+    <link rel="canonical" href="https://bigmonkey.online" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'apple-blue': '#007AFF',
+                        'apple-gray': '#8E8E93',
+                        'apple-green': '#34C759',
+                        'apple-red': '#FF3B30',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* 全局样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .hover-scale {
+            transition: transform 0.3s ease;
         }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        /* 顶部导航栏样式 */
-        .header {
-            background-color: #2c3e50;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo h1 {
-            color: #fff;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            background-color: #34495e;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-box input {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            width: 200px;
-        }
-
-        .search-box button {
-            padding: 0.5rem 1rem;
-            background-color: #3498db;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* 主要内容区域样式 */
-        .main-content {
-            max-width: 1200px;
-            margin: 80px auto 0;
-            padding: 20px;
-        }
-
-        /* 分类按钮样式 */
-        .categories {
-            margin-bottom: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .category-btn {
-            padding: 0.5rem 1.5rem;
-            border: none;
-            border-radius: 20px;
-            background-color: #fff;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background-color: #3498db;
-            color: #fff;
-        }
-
-        /* 游戏卡片网格样式 */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            padding: 1rem 0;
-        }
-
-        .game-card {
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .game-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .game-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .game-info {
-            padding: 1rem;
-        }
-
-        .game-info h3 {
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .game-info p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .game-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .play-btn {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #3498db;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .play-btn:hover {
-            background-color: #2980b9;
-        }
-
-        /* 页脚样式 */
-        .footer {
-            background-color: #2c3e50;
-            color: #fff;
-            padding: 3rem 0 1rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #3498db;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: #fff;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #3498db;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid #34495e;
-        }
-
-        /* 响应式样式 */
-        @media screen and (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-
-            .search-box {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .search-box input {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .main-content {
-                margin-top: 120px;
-            }
-
-            .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-                gap: 1rem;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .logo h1 {
-                font-size: 1.5rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-links a {
-                margin: 0.2rem 0;
-            }
-
-            .categories {
-                justify-content: center;
-            }
-
-            .category-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .game-card {
-                max-width: 320px;
-                margin: 0 auto;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
+        .hover-scale:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body>
-    <!-- 顶部导航栏 -->
-    <header class="header">
-        <nav class="nav-container">
-            <div class="logo">
-                <h1>Fun Games Hub</h1>
-            </div>
-            <div class="nav-links">
-                <a href="#" class="active">Home</a>
-                <a href="#">Popular</a>
-                <a href="#">New Games</a>
-                <a href="#">Categories</a>
-            </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search games...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- 主要内容区域 -->
-    <main class="main-content">
-        <!-- 游戏分类标签 -->
-        <section class="categories">
-            <button class="category-btn active">All Games</button>
-            <button class="category-btn">Action</button>
-            <button class="category-btn">Puzzle</button>
-            <button class="category-btn">Strategy</button>
-            <button class="category-btn">Arcade</button>
-        </section>
-
-        <!-- 游戏卡片网格 -->
-        <section class="games-grid">
-            <!-- Monster Survivors -->
-            <article class="game-card">
-                <div class="game-image">
-                    <img src="images/monster-survivors.jpg" alt="Monster Survivors">
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-apple-blue">MonsterOnline</a>
                 </div>
-                <div class="game-info">
-                    <h3>Monster Survivors</h3>
-                    <p>An exciting survival game where you battle against waves of monsters</p>
-                    <div class="game-meta">
-                        <span><i class="fas fa-star"></i> 4.8</span>
-                        <span><i class="fas fa-users"></i> 2.5k</span>
-                    </div>
-                    <a href="games/monster-survivors.html" class="play-btn">Play Now</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#game" class="text-apple-gray hover:text-apple-blue transition-colors">Play Now</a>
+                    <a href="#features" class="text-apple-gray hover:text-apple-blue transition-colors">Features</a>
+                    <a href="#about" class="text-apple-gray hover:text-apple-blue transition-colors">About</a>
+                    <a href="#contact" class="text-apple-gray hover:text-apple-blue transition-colors">Contact</a>
                 </div>
-            </article>
-
-            <!-- Space Shooter -->
-            <article class="game-card">
-                <div class="game-image">
-                    <img src="images/space-shooter.jpg" alt="Space Shooter">
-                </div>
-                <div class="game-info">
-                    <h3>Space Shooter</h3>
-                    <p>Classic arcade-style space shooting game with modern graphics</p>
-                    <div class="game-meta">
-                        <span><i class="fas fa-star"></i> 4.6</span>
-                        <span><i class="fas fa-users"></i> 1.8k</span>
-                    </div>
-                    <a href="#" class="play-btn">Coming Soon</a>
-                </div>
-            </article>
-
-            <!-- Puzzle Master -->
-            <article class="game-card">
-                <div class="game-image">
-                    <img src="images/puzzle-master.jpg" alt="Puzzle Master">
-                </div>
-                <div class="game-info">
-                    <h3>Puzzle Master</h3>
-                    <p>Challenge your brain with this addictive puzzle game</p>
-                    <div class="game-meta">
-                        <span><i class="fas fa-star"></i> 4.7</span>
-                        <span><i class="fas fa-users"></i> 2.1k</span>
-                    </div>
-                    <a href="#" class="play-btn">Coming Soon</a>
-                </div>
-            </article>
-
-            <!-- Racing Fever -->
-            <article class="game-card">
-                <div class="game-image">
-                    <img src="images/racing-fever.jpg" alt="Racing Fever">
-                </div>
-                <div class="game-info">
-                    <h3>Racing Fever</h3>
-                    <p>High-speed racing action with stunning graphics</p>
-                    <div class="game-meta">
-                        <span><i class="fas fa-star"></i> 4.5</span>
-                        <span><i class="fas fa-users"></i> 1.9k</span>
-                    </div>
-                    <a href="#" class="play-btn">Coming Soon</a>
-                </div>
-            </article>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Your ultimate destination for free online games.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Popular Games</a></li>
-                    <li><a href="#">New Games</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                <div class="md:hidden flex items-center">
+                    <button class="text-apple-gray hover:text-apple-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Fun Games Hub. All rights reserved.</p>
+    </nav>
+
+    <header class="bg-gradient-to-r from-apple-blue to-blue-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <h1 class="text-4xl md:text-6xl font-bold text-center mb-6 animate-float">
+                MonsterOnline
+            </h1>
+            <p class="text-xl md:text-2xl text-center max-w-3xl mx-auto">
+                Embark on an epic adventure in a world where monsters come alive - battle, collect, and evolve your way to becoming the ultimate monster master!
+            </p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="#game" class="bg-white text-apple-blue px-8 py-3 rounded-full font-semibold hover-scale shadow-lg">
+                    Play Now
+                </a>
+                <a href="#features" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover-scale">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section id="game" class="mb-16">
+            <div class="bg-white p-6 rounded-xl shadow-xl hover-scale">
+                <h2 class="text-3xl font-bold text-apple-blue mb-6 text-center">Play MonsterOnline</h2>
+                <div class="aspect-w-16 aspect-h-9 w-full max-w-4xl mx-auto rounded-lg overflow-hidden">
+                    <iframe 
+                        src="proxy.php" 
+                        class="w-full h-[600px] md:h-[800px]"
+                        frameborder="0"
+                        allowfullscreen
+                        scrolling="yes">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                <h2 class="text-2xl font-semibold text-apple-blue mb-6">Game Features</h2>
+                <ul class="space-y-4 text-apple-gray">
+                    <li class="flex items-center">
+                        <i class="fas fa-bolt text-apple-green mr-3 text-xl"></i>
+                        Real-time multiplayer battles
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-dragon text-apple-green mr-3 text-xl"></i>
+                        Collect and evolve unique monsters
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-chess text-apple-green mr-3 text-xl"></i>
+                        Strategic combat system
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-calendar-alt text-apple-green mr-3 text-xl"></i>
+                        Regular updates and events
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                <h2 class="text-2xl font-semibold text-apple-blue mb-6">How to Play</h2>
+                <ol class="space-y-4 text-apple-gray list-decimal list-inside">
+                    <li class="flex items-center">
+                        <span class="mr-2">1.</span>
+                        Create your monster trainer account
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-2">2.</span>
+                        Choose your starter monster
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-2">3.</span>
+                        Explore the world and battle other trainers
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-2">4.</span>
+                        Collect new monsters and evolve them
+                    </li>
+                    <li class="flex items-center">
+                        <span class="mr-2">5.</span>
+                        Join tournaments and climb the rankings
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="about" class="bg-white p-8 rounded-xl shadow-lg mb-16 hover-scale">
+            <h2 class="text-3xl font-semibold text-apple-blue mb-6">About MonsterOnline</h2>
+            <div class="prose max-w-none text-apple-gray">
+                <p class="mb-4 text-lg">
+                    MonsterOnline is a cutting-edge multiplayer game that combines strategic gameplay with monster collection mechanics. Set in a vibrant world filled with unique creatures, players can train, battle, and evolve their monsters while competing against trainers from around the globe.
+                </p>
+                <p class="mb-4 text-lg">
+                    Our game features a sophisticated battle system that rewards strategic thinking and team composition. With regular updates, seasonal events, and a growing roster of monsters, there's always something new to discover in the world of MonsterOnline.
+                </p>
+                <p class="text-lg">
+                    Whether you're a casual player looking for fun monster battles or a competitive trainer aiming for the top ranks, MonsterOnline offers an engaging experience for players of all skill levels.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-white p-8 rounded-xl shadow-lg mb-16 hover-scale">
+            <h2 class="text-3xl font-semibold text-apple-blue mb-6">Contact Us</h2>
+            <form class="max-w-2xl mx-auto space-y-6">
+                <div>
+                    <label for="name" class="block text-apple-gray mb-2">Name</label>
+                    <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-apple-blue focus:border-transparent" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-apple-gray mb-2">Email</label>
+                    <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-apple-blue focus:border-transparent" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-apple-gray mb-2">Message</label>
+                    <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-apple-blue focus:border-transparent" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-apple-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+                    Send Message
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-apple-blue mb-4">MonsterOnline</h3>
+                    <p class="text-apple-gray">
+                        Join the adventure and become a monster master today!
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-apple-blue mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-apple-gray">
+                        <li><a href="#game" class="hover:text-apple-blue transition-colors">Play Now</a></li>
+                        <li><a href="#features" class="hover:text-apple-blue transition-colors">Features</a></li>
+                        <li><a href="#about" class="hover:text-apple-blue transition-colors">About</a></li>
+                        <li><a href="#contact" class="hover:text-apple-blue transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-apple-blue mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-apple-gray hover:text-apple-blue transition-colors">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-apple-gray hover:text-apple-blue transition-colors">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-apple-gray hover:text-apple-blue transition-colors">
+                            <i class="fab fa-discord text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-apple-gray hover:text-apple-blue transition-colors">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t pt-8 text-center text-apple-gray">
+                <p>© 2024 BigMonkey.online - All rights reserved</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // 等待DOM加载完成
-        document.addEventListener('DOMContentLoaded', function() {
-            // 分类按钮点击事件
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // 移除所有按钮的active类
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    // 为当前点击的按钮添加active类
-                    this.classList.add('active');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-            });
-
-            // 搜索功能
-            const searchInput = document.querySelector('.search-box input');
-            const searchButton = document.querySelector('.search-box button');
-            
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const gameCards = document.querySelectorAll('.game-card');
-                
-                gameCards.forEach(card => {
-                    const gameTitle = card.querySelector('h3').textContent.toLowerCase();
-                    const gameDescription = card.querySelector('p').textContent.toLowerCase();
-                    
-                    if (gameTitle.includes(searchTerm) || gameDescription.includes(searchTerm)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }
-
-            searchButton.addEventListener('click', performSearch);
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    performSearch();
-                }
-            });
-
-            // 添加页面加载动画
-            const gameCards = document.querySelectorAll('.game-card');
-            gameCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
             });
         });
     </script>
